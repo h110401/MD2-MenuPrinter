@@ -1,7 +1,9 @@
+package menu;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class Menu {
+public class Menu implements IMenu {
     String header;
 
     List<String> choices = new ArrayList<>();
@@ -20,31 +22,51 @@ public class Menu {
         this.preset = true;
     }
 
+    @Override
     public void addHeader(String header) {
         this.header = header;
         setMaxWidth();
     }
 
+    @Override
     public void addChoice(String choice) {
         choices.add(choice);
         setMaxWidth();
     }
 
+    @Override
     public void addPaddingLeft(int padding) {
         this.leftPadding = padding;
     }
 
+    @Override
     public void print() {
-        printUpLine();
 
-        printHeader();
+        try {
+            printUpLine();
 
-        printMiddleLine();
+            printHeader();
 
-        printBody();
+            printMiddleLine();
+
+            printBody();
 
 
-        printBottomLine();
+            printBottomLine();
+        } catch (Exception e) {
+            System.out.println("Add more width");
+        }
+
+    }
+
+    @Override
+    public int indexOfChoice(String choice) {
+        int i = 1;
+        for (String c : choices) {
+            if (c.equals(choice)) return i;
+            i++;
+        }
+        return -1;
     }
 
     private void printBody() {

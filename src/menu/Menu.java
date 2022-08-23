@@ -75,9 +75,9 @@ public class Menu implements IMenu {
         for (int i = 0; i < leftPadding; i++) {
             paddingLeft += " ";
         }
-
+        int i = 1;
         for (String c : choices) {
-            String temp = String.format("|" + paddingLeft + "%-" + (maxWidth - leftPadding) + "s|", c);
+            String temp = String.format("|" + paddingLeft + " %2d. %-" + (maxWidth - leftPadding - 5) + "s|", i++, c);
             System.out.println(temp);
         }
 
